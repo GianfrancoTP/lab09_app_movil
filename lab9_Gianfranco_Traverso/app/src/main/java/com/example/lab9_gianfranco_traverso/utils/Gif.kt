@@ -1,12 +1,13 @@
-package com.example.lab9_gianfranco_traverso
+package com.example.lab9_gianfranco_traverso.utils
 
 class Gif(
-    val data: Data)
+    val data: Data
+)
 
 class Data(
     val id: String,
     val title: String,
-    val embed_url: String,
+    val image_url: String,
     val name: String
 )
 

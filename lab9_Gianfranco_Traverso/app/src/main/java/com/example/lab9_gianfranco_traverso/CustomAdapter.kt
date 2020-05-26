@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lab9_gianfranco_traverso.utils.Categories
 
 class CustomAdapter(val caList: ArrayList<Categories>, var clickListener: OnItemClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 

@@ -1,23 +1,20 @@
 package com.example.lab9_gianfranco_traverso
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.google.gson.Gson
+import com.example.lab9_gianfranco_traverso.utils.Gif
+import com.example.lab9_gianfranco_traverso.utils.loadGif
 
 class GifAdapter(val gifList: ArrayList<Gif>) : RecyclerView.Adapter<GifAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val gif : Gif = gifList[position]
         holder.textView.text = gif.data.title
+        holder.imageview.loadGif(gif.data.image_url)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

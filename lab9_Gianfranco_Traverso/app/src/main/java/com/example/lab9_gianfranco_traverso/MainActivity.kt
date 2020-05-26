@@ -3,23 +3,19 @@ package com.example.lab9_gianfranco_traverso
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab9_gianfranco_traverso.Configurations.API_KEY
-import com.example.lab9_gianfranco_traverso.Configurations.BASE_URL
 import com.example.lab9_gianfranco_traverso.Networking.ApiService
 import com.example.lab9_gianfranco_traverso.Networking.GifService
-import com.google.gson.Gson
+import com.example.lab9_gianfranco_traverso.utils.Categories
+import com.example.lab9_gianfranco_traverso.utils.CategoriesList
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
@@ -54,7 +50,12 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 if (posts != null) {
                     val len = posts.data.size-1
                     for (i in posts.data){
-                        categoriesList.add(Categories(name = i.name, subcategories = i.subcategories))
+                        categoriesList.add(
+                            Categories(
+                                name = i.name,
+                                subcategories = i.subcategories
+                            )
+                        )
                         recyclerView.adapter?.notifyItemInserted(categoriesList.size - 1)
                     }
                 }
