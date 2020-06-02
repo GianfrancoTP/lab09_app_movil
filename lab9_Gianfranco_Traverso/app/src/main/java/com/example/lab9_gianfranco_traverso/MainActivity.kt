@@ -4,20 +4,26 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab9_gianfranco_traverso.Configurations.API_KEY
 import com.example.lab9_gianfranco_traverso.Networking.ApiService
 import com.example.lab9_gianfranco_traverso.Networking.GifService
+import com.example.lab9_gianfranco_traverso.adapters.CustomAdapter
+import com.example.lab9_gianfranco_traverso.adapters.OnItemClickListener
 import com.example.lab9_gianfranco_traverso.utils.Categories
 import com.example.lab9_gianfranco_traverso.utils.CategoriesList
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), OnItemClickListener {
+class MainActivity : AppCompatActivity(),
+    OnItemClickListener {
 
     val categoriesList = ArrayList<Categories>()
     lateinit var service: ApiService
@@ -30,10 +36,26 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val adapter = CustomAdapter(categoriesList, this)
+        val adapter =
+            CustomAdapter(
+                categoriesList,
+                this
+            )
         recyclerView.adapter = adapter
 
         Categories()
+
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            // Name, email address
+            val name = user.displayName
+            val email = user.email
+
+
+            val username = findViewById<TextView>(R.id.username)
+            emailText.text = email.toString()
+            username.text = name.toString()
+        }
     }
 
     fun Search(view: View){
@@ -81,5 +103,15 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     fun Favoritos(view: View){
         val intent = Intent( this, Favoritos()::class.java)
         this.startActivity(intent)
+    }
+
+    fun onLogout(view: View) {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent( this, LoginActivity::class.java)
+        this.startActivity(intent)
+        Toast.makeText(
+            applicationContext, "Logout successful.",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

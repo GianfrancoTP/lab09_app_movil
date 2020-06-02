@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Favoritos"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".GifActivity" />
         <activity android:name=".SubCategory" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

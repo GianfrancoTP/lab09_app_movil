@@ -1,10 +1,11 @@
-package com.example.lab9_gianfranco_traverso
+package com.example.lab9_gianfranco_traverso.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lab9_gianfranco_traverso.R
 import com.example.lab9_gianfranco_traverso.utils.Categories
 
 class CustomAdapter(val caList: ArrayList<Categories>, var clickListener: OnItemClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -15,7 +16,9 @@ class CustomAdapter(val caList: ArrayList<Categories>, var clickListener: OnItem
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
-        return ViewHolder(v)
+        return ViewHolder(
+            v
+        )
     }
 
     override fun getItemCount(): Int {
@@ -25,7 +28,7 @@ class CustomAdapter(val caList: ArrayList<Categories>, var clickListener: OnItem
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val textView = itemView.findViewById<TextView>(R.id.text)
 
-        fun initialize(item: Categories, action:OnItemClickListener){
+        fun initialize(item: Categories, action: OnItemClickListener){
             textView.text = item.name
 
             itemView.setOnClickListener {

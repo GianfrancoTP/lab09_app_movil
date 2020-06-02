@@ -4,11 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.lab9_gianfranco_traverso.adapters.SubAdapter
 
 class SubCategory : AppCompatActivity() {
 
@@ -21,7 +20,8 @@ class SubCategory : AppCompatActivity() {
         recycler_View = findViewById<RecyclerView>(R.id.recyclerView3)
         recycler_View.layoutManager = LinearLayoutManager(this)
 
-        val adapter = SubAdapter(names)
+        val adapter =
+            SubAdapter(names)
         recycler_View.adapter = adapter
     }
 

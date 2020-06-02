@@ -42,9 +42,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFav"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="641dp" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

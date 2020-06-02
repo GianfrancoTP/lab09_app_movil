@@ -10,6 +10,8 @@ import androidx.room.Room
 import com.example.lab9_gianfranco_traverso.Configurations.API_KEY
 import com.example.lab9_gianfranco_traverso.Networking.ApiService
 import com.example.lab9_gianfranco_traverso.Networking.GifService
+import com.example.lab9_gianfranco_traverso.adapters.GifAdapter
+import com.example.lab9_gianfranco_traverso.adapters.OnGifItemClickListener
 import com.example.lab9_gianfranco_traverso.model.Database
 import com.example.lab9_gianfranco_traverso.model.Gif
 import com.example.lab9_gianfranco_traverso.model.GifDao
@@ -19,7 +21,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GifActivity : AppCompatActivity(), OnGifItemClickListener {
+class GifActivity : AppCompatActivity(),
+    OnGifItemClickListener {
 
     var gifList = ArrayList<GIF>()
     lateinit var recycler_View : RecyclerView
@@ -43,7 +46,10 @@ class GifActivity : AppCompatActivity(), OnGifItemClickListener {
         recycler_View = findViewById<RecyclerView>(R.id.recyclerView2)
         recycler_View.layoutManager = LinearLayoutManager(this)
 
-        val adapter = GifAdapter(gifList, this)
+        val adapter = GifAdapter(
+            gifList,
+            this
+        )
         recycler_View.adapter = adapter
     }
 

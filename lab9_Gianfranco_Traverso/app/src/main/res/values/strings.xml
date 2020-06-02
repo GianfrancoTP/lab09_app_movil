@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">lab9_Gianfranco_Traverso</string>
+    <string name="acton_logout">acton_logout</string>
+    <string name="prompt_email">prompt_email</string>
+    <string name="prompt_password">prompt_password</string>
+    <string name="action_sign_in_short">action_sign_in_short</string>
+    <string name="action_firebaseui">action_firebaseui</string>
+    <string name="action_sign_in">action_sign_in</string>
+    <string name="action_register">action_register</string>
 </resources>
