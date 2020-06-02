@@ -1,6 +1,6 @@
 package com.example.lab9_gianfranco_traverso.utils
 
-class Gif(
+class GIF(
     val data: Data
 )
 

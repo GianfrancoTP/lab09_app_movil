@@ -77,4 +77,9 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         intent.putStringArrayListExtra("list", names)
         this.startActivity(intent)
     }
+
+    fun Favoritos(view: View){
+        val intent = Intent( this, Favoritos()::class.java)
+        this.startActivity(intent)
+    }
 }

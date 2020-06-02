@@ -1,14 +1,20 @@
 package com.example.lab9_gianfranco_traverso
 
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.lab9_gianfranco_traverso.Configurations.API_KEY
 import com.example.lab9_gianfranco_traverso.Networking.ApiService
 import com.example.lab9_gianfranco_traverso.Networking.GifService
-import com.example.lab9_gianfranco_traverso.utils.Gif
+import com.example.lab9_gianfranco_traverso.model.Database
+import com.example.lab9_gianfranco_traverso.model.Gif
+import com.example.lab9_gianfranco_traverso.model.GifDao
+import com.example.lab9_gianfranco_traverso.utils.GIF
 import com.example.lab9_gianfranco_traverso.utils.GifList
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,14 +22,16 @@ import retrofit2.Response
 
 class GifActivity : AppCompatActivity() {
 
-    var gifList = ArrayList<Gif>()
+    var gifList = ArrayList<GIF>()
     lateinit var recycler_View : RecyclerView
     lateinit var service: ApiService
     lateinit var search: String
+    lateinit var database: GifDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gif)
 
+        database = Room.databaseBuilder(this, Database::class.java,"gif").build().gifDao()
         service = GifService.buildService(ApiService::class.java)
 
         search = intent.getStringExtra("String")
@@ -41,14 +49,22 @@ class GifActivity : AppCompatActivity() {
     }
 
     fun getRandomPost(){
-        var post: Gif? = null
-        service.getRandomGif(API_KEY, "pg").enqueue(object: Callback<Gif> {
-            override fun onResponse(call: Call<Gif>?, response: Response<Gif>?) {
+        var post: GIF? = null
+        service.getRandomGif(API_KEY, "pg").enqueue(object: Callback<GIF> {
+            override fun onResponse(call: Call<GIF>?, response: Response<GIF>?) {
                 post = response?.body()
                 post?.let { gifList.add(it) }
                 recycler_View.adapter?.notifyItemInserted(gifList.size - 1)
+                val gif = Gif(
+                    response?.body()?.data?.id ?: "",
+                    response?.body()?.data?.image_url ?: "",
+                    response?.body()?.data?.title ?: ""
+                )
+                AsyncTask.execute{
+                    database.insert(gif)
+                }
             }
-            override fun onFailure(call: Call<Gif>?, t: Throwable?) {
+            override fun onFailure(call: Call<GIF>?, t: Throwable?) {
                 t?.printStackTrace()
             }
         })
@@ -62,7 +78,7 @@ class GifActivity : AppCompatActivity() {
                     val len = posts.data.size-1
                     for (i in posts.data){
                         val post =
-                            Gif(data = i)
+                            GIF(data = i)
                         post?.let { gifList.add(it) }
                         recycler_View.adapter?.notifyItemInserted(gifList.size - 1)
                     }
@@ -74,5 +90,8 @@ class GifActivity : AppCompatActivity() {
                 t?.printStackTrace()
             }
         })
+    }
+
+    fun addFavorite(view: View){
     }
 }

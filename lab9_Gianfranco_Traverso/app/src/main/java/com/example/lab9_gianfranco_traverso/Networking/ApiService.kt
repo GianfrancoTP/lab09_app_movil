@@ -1,7 +1,7 @@
 package com.example.lab9_gianfranco_traverso.Networking
 
 import com.example.lab9_gianfranco_traverso.utils.CategoriesList
-import com.example.lab9_gianfranco_traverso.utils.Gif
+import com.example.lab9_gianfranco_traverso.utils.GIF
 import com.example.lab9_gianfranco_traverso.utils.GifList
 import retrofit2.Call
 import retrofit2.http.GET
@@ -13,7 +13,7 @@ interface ApiService {
     @GET("random")
     fun getRandomGif(@Header("api_key") api_key: String?,
                      @Query("rating") rating: String?
-                     ): Call<Gif>
+                     ): Call<GIF>
 
     @GET("search")
     fun SearchGif(@Header("api_key") api_key: String?,

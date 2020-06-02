@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lab9_gianfranco_traverso.utils.Gif
+import com.example.lab9_gianfranco_traverso.model.Gif
+import com.example.lab9_gianfranco_traverso.utils.GIF
 import com.example.lab9_gianfranco_traverso.utils.loadGif
 
-class GifAdapter(val gifList: ArrayList<Gif>) : RecyclerView.Adapter<GifAdapter.ViewHolder>() {
+class GifAdapter(val GIFList: ArrayList<GIF>) : RecyclerView.Adapter<GifAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val gif : Gif = gifList[position]
-        holder.textView.text = gif.data.title
-        holder.imageview.loadGif(gif.data.image_url)
+        val GIF : GIF = GIFList[position]
+        holder.textView.text = GIF.data.title
+        holder.imageview.loadGif(GIF.data.image_url)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,11 +24,11 @@ class GifAdapter(val gifList: ArrayList<Gif>) : RecyclerView.Adapter<GifAdapter.
     }
 
     override fun getItemCount(): Int {
-        return gifList.size
+        return GIFList.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val textView = itemView.findViewById<TextView>(R.id.text2)
+        val textView = itemView.findViewById<TextView>(R.id.checkBox)
         val imageview = itemView.findViewById(R.id.imageView2) as ImageView
     }
 }
