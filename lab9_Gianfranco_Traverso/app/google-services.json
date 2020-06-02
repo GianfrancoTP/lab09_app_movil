@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "75344540743",
+    "firebase_url": "https://app-movil-a0e5e.firebaseio.com",
+    "project_id": "app-movil-a0e5e",
+    "storage_bucket": "app-movil-a0e5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75344540743:android:d3cf72cfe0955f9163ed62",
+        "android_client_info": {
+          "package_name": "com.example.lab9_gianfranco_traverso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75344540743-g660jeh2bp28qk0vjd77e6t75rsnrggg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyART_khSRVk0OMUooR7u6pG2nobjqj4k2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75344540743-g660jeh2bp28qk0vjd77e6t75rsnrggg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
