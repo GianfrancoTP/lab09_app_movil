@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_favoritos.*
 import kotlinx.android.synthetic.main.item_layout.view.*
 import okhttp3.internal.notifyAll
 
-class Favoritos : AppCompatActivity(), OnGifItemClickListener {
+class Favoritos : AppCompatActivity(), OnCategoryItemClickListener {
 
     lateinit var database: GifDao
     lateinit var recycler_View : RecyclerView

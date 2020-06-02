@@ -10,7 +10,7 @@ import com.example.lab9_gianfranco_traverso.model.Gif
 import com.example.lab9_gianfranco_traverso.utils.loadGif
 
 
-class FavAdapter(val GIFList:List<Gif>, var clickListener: OnGifItemClickListener) : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
+class FavAdapter(val GIFList:List<Gif>, var clickListener: OnCategoryItemClickListener) : RecyclerView.Adapter<FavAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.initialize(GIFList[position], clickListener)
@@ -29,7 +29,7 @@ class FavAdapter(val GIFList:List<Gif>, var clickListener: OnGifItemClickListene
         val textView = itemView.findViewById<TextView>(R.id.TitleText)
         val imageview = itemView.findViewById(R.id.gif_image) as ImageView
 
-        fun initialize(item: Gif, action:OnGifItemClickListener){
+        fun initialize(item: Gif, action:OnCategoryItemClickListener){
             textView.text = item.title
             imageview.loadGif(item.url)
 
@@ -40,6 +40,6 @@ class FavAdapter(val GIFList:List<Gif>, var clickListener: OnGifItemClickListene
     }
 }
 
-interface OnGifItemClickListener{
+interface OnCategoryItemClickListener{
     fun onItemClick(item: Gif, position: Int)
 }

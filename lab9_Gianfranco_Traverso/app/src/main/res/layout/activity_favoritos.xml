@@ -39,10 +39,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_search_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFav"
             android:layout_width="match_parent"
-            android:layout_height="638dp" />
+            android:layout_height="641dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

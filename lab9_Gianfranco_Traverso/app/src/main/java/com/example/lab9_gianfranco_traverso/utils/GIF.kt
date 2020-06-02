@@ -4,10 +4,18 @@ class GIF(
     val data: Data
 )
 
+class Large(
+    val url: String
+)
+
+class Images(
+    val downsized_large: Large
+)
+
 class Data(
     val id: String,
     val title: String,
-    val image_url: String,
+    val images: Images,
     val name: String
 )
 

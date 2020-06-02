@@ -3,7 +3,6 @@ package com.example.lab9_gianfranco_traverso
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GifActivity : AppCompatActivity() {
+class GifActivity : AppCompatActivity(), OnGifItemClickListener {
 
     var gifList = ArrayList<GIF>()
     lateinit var recycler_View : RecyclerView
@@ -44,7 +43,7 @@ class GifActivity : AppCompatActivity() {
         recycler_View = findViewById<RecyclerView>(R.id.recyclerView2)
         recycler_View.layoutManager = LinearLayoutManager(this)
 
-        val adapter = GifAdapter(gifList)
+        val adapter = GifAdapter(gifList, this)
         recycler_View.adapter = adapter
     }
 
@@ -55,14 +54,6 @@ class GifActivity : AppCompatActivity() {
                 post = response?.body()
                 post?.let { gifList.add(it) }
                 recycler_View.adapter?.notifyItemInserted(gifList.size - 1)
-                val gif = Gif(
-                    response?.body()?.data?.id ?: "",
-                    response?.body()?.data?.image_url ?: "",
-                    response?.body()?.data?.title ?: ""
-                )
-                AsyncTask.execute{
-                    database.insert(gif)
-                }
             }
             override fun onFailure(call: Call<GIF>?, t: Throwable?) {
                 t?.printStackTrace()
@@ -92,6 +83,16 @@ class GifActivity : AppCompatActivity() {
         })
     }
 
-    fun addFavorite(view: View){
+    override fun onItemClick(item: GIF, position: Int) {
+        Toast.makeText(applicationContext, "Gif añadido a favoritos", Toast.LENGTH_LONG).show()
+        val gif = Gif(
+            item.data.id,
+            item.data.images.downsized_large.url,
+            item.data.title
+        )
+        AsyncTask.execute{
+            database.insert(gif)
+        }
+
     }
 }
