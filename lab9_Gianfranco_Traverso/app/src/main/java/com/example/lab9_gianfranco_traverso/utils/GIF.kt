@@ -1,5 +1,7 @@
 package com.example.lab9_gianfranco_traverso.utils
 
+import com.example.lab9_gianfranco_traverso.model.LocationObject
+
 class GIF(
     val data: Data
 )
@@ -16,7 +18,9 @@ class Data(
     val id: String,
     val title: String,
     val images: Images,
-    val name: String
+    val name: String,
+    val longitude: Double,
+    val latitude: Double
 )
 
 class GifList(

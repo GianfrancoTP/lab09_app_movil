@@ -60,7 +60,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="78dp"
+            android:layout_height="121dp"
             android:layout_marginEnd="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,12 +70,12 @@
                 android:id="@+id/imageView"
                 android:layout_width="43dp"
                 android:layout_height="38dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
                 android:onClick="Search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/editText"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.493"
                 app:srcCompat="@drawable/ic_search_black_24dp" />
 
             <EditText
@@ -88,20 +88,33 @@
                 android:inputType="textShortMessage|textPersonName|text|textEmailAddress"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.606" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/favoritos_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:onClick="Favoritos"
                 android:text="Favoritos"
                 android:textSize="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/mapButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.611" />
+
+            <Button
+                android:id="@+id/mapButton"
+                android:layout_width="100dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="openMap"
+                android:text="Mapa
+"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,7 +3,6 @@ package com.example.lab9_gianfranco_traverso.model
 import androidx.room.*
 import com.example.lab9_gianfranco_traverso.model.Gif.Companion.TABLE_NAME
 
-
 @Dao
 interface GifDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -27,9 +26,16 @@ data class Gif(
     @ColumnInfo(name = URL)
     val url: String,
     @ColumnInfo(name = TITLE)
-    val title: String
+    val title: String,
+    @ColumnInfo(name = LONGITUDE)
+    val longitude: Double,
+    @ColumnInfo(name = LATITUDE)
+    val latitude: Double
+
 ) {
     companion object {
+        const val LATITUDE = "latitude"
+        const val LONGITUDE = "longitude"
         const val TITLE = "title"
         const val TABLE_NAME = "gif"
         const val ID = "id"

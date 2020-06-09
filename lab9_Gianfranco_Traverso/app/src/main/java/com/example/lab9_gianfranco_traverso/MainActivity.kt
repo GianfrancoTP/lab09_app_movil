@@ -16,7 +16,6 @@ import com.example.lab9_gianfranco_traverso.adapters.OnItemClickListener
 import com.example.lab9_gianfranco_traverso.utils.Categories
 import com.example.lab9_gianfranco_traverso.utils.CategoriesList
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -113,5 +112,10 @@ class MainActivity : AppCompatActivity(),
             applicationContext, "Logout successful.",
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    fun openMap(view: View){
+        val intent = Intent( this, MapsActivity::class.java)
+        this.startActivity(intent)
     }
 }

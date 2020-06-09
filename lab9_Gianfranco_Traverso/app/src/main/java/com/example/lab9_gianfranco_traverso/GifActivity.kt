@@ -17,21 +17,31 @@ import com.example.lab9_gianfranco_traverso.model.Gif
 import com.example.lab9_gianfranco_traverso.model.GifDao
 import com.example.lab9_gianfranco_traverso.utils.GIF
 import com.example.lab9_gianfranco_traverso.utils.GifList
+import com.example.lab9_gianfranco_traverso.utils.LocationUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.lifecycle.Observer
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
-class GifActivity : AppCompatActivity(),
-    OnGifItemClickListener {
+class GifActivity : AppCompatActivity(), OnGifItemClickListener {
 
     var gifList = ArrayList<GIF>()
     lateinit var recycler_View : RecyclerView
     lateinit var service: ApiService
     lateinit var search: String
     lateinit var database: GifDao
+    private lateinit var locationData: LocationUtil
+    private lateinit var mMap: GoogleMap
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gif)
+
+        locationData = LocationUtil(this)
 
         database = Room.databaseBuilder(this, Database::class.java,"gif").build().gifDao()
         service = GifService.buildService(ApiService::class.java)
@@ -91,14 +101,20 @@ class GifActivity : AppCompatActivity(),
 
     override fun onItemClick(item: GIF, position: Int) {
         Toast.makeText(applicationContext, "Gif añadido a favoritos", Toast.LENGTH_LONG).show()
-        val gif = Gif(
-            item.data.id,
-            item.data.images.downsized_large.url,
-            item.data.title
-        )
-        AsyncTask.execute{
-            database.insert(gif)
-        }
 
+        locationData.observe(this, Observer {
+
+            val gif = Gif(
+                item.data.id,
+                item.data.images.downsized_large.url,
+                item.data.title,
+                it.longitude,
+                it.latitude
+            )
+
+            AsyncTask.execute{
+                database.insert(gif)
+            }
+        })
     }
 }
